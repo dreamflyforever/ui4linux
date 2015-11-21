@@ -7,6 +7,7 @@
 
 ##Using
 * chinese show	
+
 		int main(int argc, char **argv)
 		{
 			struct ft f;
@@ -20,7 +21,8 @@
 		}
 
 * picture show
-	`picture_write(x_millimeter, y_millimeter, path_of_picture);`
+
+	picture_write(x_millimeter, y_millimeter, path_of_picture);
 
 ##Copyright
 * all copyrights are held by lapsule INC. Written by Jim Yang.
