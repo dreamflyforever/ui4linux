@@ -19,31 +19,31 @@ void lcd_put_pixel(struct ft *f, int x, int y, unsigned int color)
 	pen_32 = (unsigned int *)pen_8;
 
 	switch (f->var.bits_per_pixel) {
-		case 8:
-			{
-				*pen_8 = color;
-				break;
-			}
-		case 16:
-			{
-				/* 565 */
-				red   = (color >> 16) & 0xff;
-				green = (color >> 8) & 0xff;
-				blue  = (color >> 0) & 0xff;
-				color = ((red >> 3) << 11) | ((green >> 2) << 5) | (blue >> 3);
-				*pen_16 = color;
-				break;
-			}
-		case 32:
-			{
-				*pen_32 = color;
-				break;
-			}
-		default:
-			{
-				printf("can't surport %dbpp\n", f->var.bits_per_pixel);
-				break;
-			}
+	case 8:
+	{
+		*pen_8 = color;
+		break;
+	}
+	case 16:
+	{
+		/* 565 */
+		red   = (color >> 16) & 0xff;
+		green = (color >> 8) & 0xff;
+		blue  = (color >> 0) & 0xff;
+		color = ((red >> 3) << 11) | ((green >> 2) << 5) | (blue >> 3);
+		*pen_16 = color;
+		break;
+	}
+	case 32:
+	{
+		*pen_32 = color;
+		break;
+	}
+	default:
+	{
+		printf("can't surport %dbpp\n", f->var.bits_per_pixel);
+		break;
+	}
 	}
 }
 
@@ -79,20 +79,20 @@ void lcd_put_chinese(struct ft *f, int x, int y, unsigned char *str)
 
 	int i, j, b;
 	for (i = 0; i < 16; i++) {
-			for (j = 0; j < 2; j++) {
-				byte = dots[i*2 + j];
-				for (b = 7; b >=0; b--) {
-						if (byte & (1<<b)) {
-							/* show */
-							lcd_put_pixel(f, (7-b)*2 +x+j*16, y+i*2, 0xffffff);
-							lcd_put_pixel(f, (7-b) *2 +1+x+j*16, y+i*2, 0xffffff);
-						} else {
-							/* hide */
-							lcd_put_pixel(f, (7-b)*2+x+j*16, y+i*2, 0);
-							lcd_put_pixel(f, (7-b)*2+1+x+j*16, y+i*2, 0);
-						}
+		for (j = 0; j < 2; j++) {
+			byte = dots[i*2 + j];
+			for (b = 7; b >=0; b--) {
+				if (byte & (1<<b)) {
+					/* show */
+					lcd_put_pixel(f, (7-b)*2 +x+j*16, y+i*2, 0xffffff);
+					lcd_put_pixel(f, (7-b) *2 +1+x+j*16, y+i*2, 0xffffff);
+				} else {
+					/* hide */
+					lcd_put_pixel(f, (7-b)*2+x+j*16, y+i*2, 0);
+					lcd_put_pixel(f, (7-b)*2+1+x+j*16, y+i*2, 0);
 				}
 			}
+		}
 	}
 }
 
@@ -189,7 +189,8 @@ void print_ascii(struct ft *f, unsigned char *ascii_str, int x, int y)
 	int num_per_line = 10;
 	int size = strlen((const char *)ascii_str);
 	for (i = 0; i < size; i++) {
-		lcd_put_ascii(f, x + i % num_per_line * distance, y + i/num_per_line * distance, ascii_str[i]);
+		lcd_put_ascii(f, x + i % num_per_line * distance,
+				y + i/num_per_line * distance, ascii_str[i]);
 	}
 }
 
