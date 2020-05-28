@@ -1,11 +1,12 @@
-##Lib_lcd
-* Lib_lcd is easy API using library for print chinese and picture based framebuffer.
+### ui4linux
+ui4linux is easily interface for printing chinese and picture based on linux 
+framebuffer.
 
-##Compiling
+### Compiling
 * `./libcompile.sh` will product `liblcd.so`.
 * `./compile_test_case.sh` will product `picture_show` and `chinese_show`.
 
-##Using
+### Using
 * chinese show	
 
 		int main(int argc, char **argv)
@@ -24,5 +25,6 @@
 
 	picture_write(x_millimeter, y_millimeter, path_of_picture);
 
-##Copyright
-* all copyrights are held by lapsule INC. Written by Jim Yang.
+### Copyright
+All copyrights are held by lapsule INC.  
+Written by Jim Yang.
